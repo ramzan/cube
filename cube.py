@@ -59,7 +59,8 @@ def codes(r: int):
 
 def get_coords(n: int):
     """
-    Return list of verticies of n-cube
+    Return list of lists containing a binary string and coordinates
+    for each vertex in the hypercube.
     """
     lst = codes(n)
     lst = [[y, [int(x) for x in y]] for y in lst]
@@ -68,7 +69,6 @@ def get_coords(n: int):
             if lst[i][1][j] == 0:
                 lst[i][1][j] = -1
     arr = []
-    j = n
     start = 0
     end = 8
     for i in range(n - 2):
@@ -99,5 +99,5 @@ def distance(s1, s2):
 
 
 if __name__ == "__main__":
-    c = Cube(int(input("Enter a dimension (non-zero integer):")))
+    c = Cube(int(input("Enter a dimension (non-negative integer):")))
     c.plot_graph()
