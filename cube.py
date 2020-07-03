@@ -1,7 +1,5 @@
-from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 
 
 class Cube:
@@ -11,15 +9,15 @@ class Cube:
             print("Invalid entry")
             exit()
         elif dim == 0:
-            self.verts = [['', [0, 0 ,0]]]
+            self.verts = [['', [0, 0, 0]]]
         elif dim == 1:
             self.verts = [['0', [0, 0, 0]], ['1', [1, 0, 0]]]
         elif dim == 2:
-            self.verts = [['00', [0, 0, 0]], ['01', [0, 1, 0]], ['11', [1, 1, 0]], ['10', [1, 0, 0]]]
+            self.verts = [['00', [0, 0, 0]], ['01', [0, 1, 0]],
+                          ['11', [1, 1, 0]], ['10', [1, 0, 0]]]
         else:
             self.verts = get_coords(dim)
-
-
+        print(len(self.verts))
 
     def plot_graph(self):
         x = [v[1][0] for v in self.verts]
@@ -38,7 +36,8 @@ class Cube:
         for i in range(len(self.verts)):
             for j in range(i, len(self.verts)):
                 if distance(self.verts[i][0], self.verts[j][0]) == 1:
-                    ax.plot([x[i], x[j]], [y[i], y[j]], [z[i], z[j]], color='g')
+                    ax.plot([x[i], x[j]], [y[i], y[j]], [z[i], z[j]],
+                            color='g')
 
         plt.show()
 
@@ -76,7 +75,8 @@ def get_coords(n: int):
             start = end
             end += 2**(i+2)
         temp = lst[start][1][3:]
-        scale = ((sum([(r+1) for r in range(len(temp)) if temp[r] == 1])  *  i) + 1) * (1 - 1/n)
+        scale = ((sum([(r+1) for r in range(len(temp)) if temp[r] == 1])
+                  * i) + 1) * (1 - 1/n)
         for j in range(start, end):
             arr.append([lst[j][0], np.array(lst[j][1][:3]) * scale])
 
@@ -87,9 +87,11 @@ def get_coords(n: int):
         seen[tuple(arr[i][1])] = None
     return arr
 
+
 def distance(s1, s2):
     """
-    Return Hamming distance of s1 and s2
+    Return Hamming distance of two binary
+    strings s1 and s2.
     """
     distance = 0
     for i in range(len(s1)):
