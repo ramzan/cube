@@ -17,7 +17,6 @@ class Cube:
                           ['11', [1, 1, 0]], ['10', [1, 0, 0]]]
         else:
             self.verts = get_coords(dim)
-        print(len(self.verts))
 
     def plot_graph(self):
         x = [v[1][0] for v in self.verts]
