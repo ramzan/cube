@@ -6,7 +6,6 @@ class Cube:
 
     def __init__(self, dim: int):
         if dim < 0:
-            print("Invalid entry")
             exit()
         elif dim == 0:
             self.verts = [['', [0, 0, 0]]]
@@ -100,5 +99,9 @@ def distance(s1, s2):
 
 
 if __name__ == "__main__":
-    c = Cube(int(input("Enter a dimension (non-negative integer):")))
-    c.plot_graph()
+    try:
+        c = Cube(int(input("Enter a dimension (non-negative integer):")))
+        c.plot_graph()
+    except: 
+        print("Invalid input")
+    
